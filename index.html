@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка числа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 200px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Проверка числа</h2>
+
+    <form id="numberForm">
+        <label for="numberInput">Введите целое число:</label>
+        <input type="number" id="numberInput" required>
+        <br>
+        <label for="resultField">Результат:</label>
+        <input type="text" id="resultField" readonly>
+        <br>
+        <button type="button" onclick="checkNumber()">Подтвердить</button>
+        <button type="button" onclick="resetForm()">Сбросить</button>
+    </form>
+
+    <script>
+        function checkNumber() {
+            // Получаем значение из поля ввода
+            var userInput = document.getElementById("numberInput").value;
+
+            // Проверяем, является ли введенное число четным
+            var resultText = (userInput % 2 === 0) ? "Четное число" : "Нечетное число";
+
+            // Выводим результат
+            document.getElementById("resultField").value = resultText;
+        }
+
+        function resetForm() {
+            // Сбрасываем значения полей и результат
+            document.getElementById("numberForm").reset();
+            document.getElementById("resultField").value = "";
+        }
+    </script>
+
+
+
+    <h2>Проверка на палиндром</h2>
+
+    <label for="numberInput">Введите натуральное число:</label>
+    <input type="number" id="numberInput" required>
+    <br>
+    <button type="button" onclick="checkPalindrome()">Проверить</button>
+    <p id="result"></p>
+
+    <script>
+        function checkPalindrome() {
+            var userInput = document.getElementById("numberInput").value;
+
+            // Проверка наличия введенного значения и является ли оно натуральным числом
+            if (userInput !== "" && /^[1-9]\d*$/.test(userInput)) {
+                var reversed = userInput.split('').reverse().join('');
+
+                if (userInput === reversed) {
+                    document.getElementById("result").innerHTML = "Число является палиндромом.";
+                } else {
+                    document.getElementById("result").innerHTML = "Число не является палиндромом.";
+                }
+            } else {
+                document.getElementById("result").innerHTML = "Введите корректное натуральное число.";
+            }
+        }
+    </script>
+
+</body>
+</html>
